@@ -65,8 +65,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let api_key = match env::var("OPENAI_API_KEY") {
         Ok(key) => key,
         Err(_) => {
-            println!("Error: OPENAI_API_KEY not found in environment variables");
-            return Ok(());
+            eprintln!("Error: OPENAI_API_KEY not found in environment variables");
+            std::process::exit(1);
         }
     };
 
@@ -97,22 +97,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .body(request_json.as_bytes())
         .send()?;
 
-        // Check response status
+    // Check response status
     let status = response.status();
     if status < 200 || status >= 300 {
         match response.body() {
             Ok(body_bytes) => {
                 let error_text = String::from_utf8_lossy(&body_bytes);
-                println!(
+                eprintln!(
                     "Error: OpenAI API returned status {}. Details: {}",
                     status, error_text
                 );
             }
             Err(e) => {
-                println!("Error: OpenAI API returned status {}. Failed to read body: {:?}", status, e);
+                eprintln!("Error: OpenAI API returned status {}. Failed to read body: {:?}", status, e);
             }
         }
-        return Ok(());
+        std::process::exit(1);
     }
 
     // Parse response
@@ -124,7 +124,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         print!("{}", choice.message.content);
         io::stdout().flush()?;
     } else {
-        println!("Error: No response from OpenAI API");
+        eprintln!("Error: No response from OpenAI API");
+        std::process::exit(1);
     }
 
     Ok(())
