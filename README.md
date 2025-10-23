@@ -4,7 +4,7 @@ WASM component that makes HTTP requests using WASI Preview 2 HTTP support.
 
 ## Description
 
-Sends HTTP POST request to OpenAI-compatible API and returns the response. Demonstrates WASI P2 component with HTTP capabilities running on NEAR Offshore platform.
+Sends HTTP POST request to OpenAI-compatible API and returns the response. Demonstrates WASI P2 component with HTTP capabilities running on NEAR OutLayer platform.
 
 ## Input Format
 
@@ -49,7 +49,7 @@ cargo build --bin test_run --features test-runner
 # - Show output and fuel consumed
 ```
 
-## Usage with NEAR Offshore
+## Usage with NEAR OutLayer
 
 1. Push this code to a GitHub repository
 
