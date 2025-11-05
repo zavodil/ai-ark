@@ -55,7 +55,7 @@ cargo build --bin test_run --features test-runner
 
 2. Call `request_execution` on the OffchainVM contract:
 ```bash
-near call offchainvm.testnet request_execution '{
+near call outlayer.testnet request_execution '{
   "code_source": {
     "repo": "https://github.com/username/ai-ark",
     "commit": "main",
