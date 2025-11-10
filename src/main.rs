@@ -71,7 +71,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
 
     // Build messages array
-    let mut messages = input.history;
+    let mut messages = Vec::new();
+
+    // Add system prompt if provided in environment variables
+    if let Ok(system_prompt) = env::var("SYSTEM_PROMPT") {
+        if !system_prompt.trim().is_empty() {
+            messages.push(Message {
+                role: "system".to_string(),
+                content: system_prompt,
+            });
+        }
+    }
+
+    // Add conversation history
+    messages.extend(input.history);
+
+    // Add current user prompt
     messages.push(Message {
         role: "user".to_string(),
         content: input.prompt,
