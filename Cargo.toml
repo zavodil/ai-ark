@@ -1,10 +1,11 @@
 [package]
-name = "ai-ark"
+name = "ai-example"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
 
 [[bin]]
-name = "ai-ark"
+name = "ai-example"
 path = "src/main.rs"
 
 # Separate binary for testing (not built for wasm32-wasip2)

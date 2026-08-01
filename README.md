@@ -1,6 +1,6 @@
 # AI Ark - WASI HTTP Example
 
-> **[Full documentation](https://outlayer.fastnear.com/docs/examples#ai-ark)** on the OutLayer dashboard.
+> **[Full documentation](https://outlayer.fastnear.com/docs/examples#ai-example)** on the OutLayer dashboard.
 
 WASM component that makes HTTP requests to OpenAI-compatible APIs using WASI Preview 2 HTTP support.
 
@@ -55,7 +55,7 @@ rustup target add wasm32-wasip2
 # Build WASM component
 cargo build --target wasm32-wasip2 --release
 
-# Output: target/wasm32-wasip2/release/ai-ark.wasm
+# Output: target/wasm32-wasip2/release/ai-example.wasm
 ```
 
 ## Local Testing
@@ -100,7 +100,7 @@ First, store your API key and system prompt as encrypted secrets using the dashb
 1. Open http://localhost:3000/secrets
 2. Connect your NEAR wallet
 3. Fill in the form:
-   - **Repo**: `github.com/your-username/ai-ark`
+   - **Repo**: `github.com/your-username/ai-example`
    - **Branch**: `main`
    - **Profile**: `production`
    - **Secrets** (JSON):
@@ -127,7 +127,7 @@ EOF
 
 # Encrypt secrets
 python3 encrypt_secrets.py secrets.json \
-  --repo "github.com/your-username/ai-ark" \
+  --repo "github.com/your-username/ai-example" \
   --branch "main" \
   --owner "your-account.testnet" \
   --keystore-url "http://localhost:8080/secrets/pubkey"
@@ -140,7 +140,7 @@ python3 encrypt_secrets.py secrets.json \
 ```bash
 # Store encrypted secrets on contract
 near call outlayer.testnet store_secrets '{
-  "repo": "github.com/your-username/ai-ark",
+  "repo": "github.com/your-username/ai-example",
   "branch": "main",
   "profile": "production",
   "encrypted_data": [42,15,67,...],
@@ -158,7 +158,7 @@ Call `request_execution` on the OutLayer contract:
 ```bash
 near call outlayer.testnet request_execution '{
   "code_source": {
-    "repo": "https://github.com/your-username/ai-ark",
+    "repo": "https://github.com/your-username/ai-example",
     "commit": "main",
     "build_target": "wasm32-wasip2"
   },
@@ -175,7 +175,7 @@ near call outlayer.testnet request_execution '{
 ```bash
 near call outlayer.testnet request_execution '{
   "code_source": {
-    "repo": "https://github.com/your-username/ai-ark",
+    "repo": "https://github.com/your-username/ai-example",
     "commit": "main",
     "build_target": "wasm32-wasip2"
   },
@@ -196,7 +196,7 @@ near call outlayer.testnet request_execution '{
 ```bash
 near call outlayer.testnet request_execution '{
   "code_source": {
-    "repo": "https://github.com/your-username/ai-ark",
+    "repo": "https://github.com/your-username/ai-example",
     "commit": "main",
     "build_target": "wasm32-wasip2"
   },
@@ -317,3 +317,7 @@ You can also use alternative OpenAI-compatible APIs:
 - Compilation happens in sandboxed Docker with `--network=none`
 - System prompt is **optional** - if not provided, OpenAI uses default behavior
 - Maximum recommended `max_tokens`: 4000 (to stay within instruction limits)
+
+## License
+
+MIT OR Apache-2.0, at your option — see `LICENSE-MIT` and `LICENSE-APACHE`.

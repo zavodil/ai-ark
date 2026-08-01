@@ -32,7 +32,7 @@ impl WasiHttpView for HostState {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let wasm = std::fs::read("target/wasm32-wasip2/release/ai-ark.wasm")?;
+    let wasm = std::fs::read("target/wasm32-wasip2/release/ai-example.wasm")?;
     println!("📦 Loaded {} bytes", wasm.len());
 
     // Read test input

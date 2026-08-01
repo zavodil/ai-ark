@@ -1,0 +1,11 @@
+/target
+*.wasm
+.DS_Store
+
+# Cargo.lock IS committed here, overriding the global ignore rule.
+#
+# Two reasons. OutLayer compiles this example inside the enclave and attests the hash of the
+# resulting wasm, so an unpinned dependency graph means the same source can compile to a
+# different binary. And the worker's compiler image is Rust 1.85: an unpinned resolve pulls
+# icu/idna versions that declare rustc 1.86 as their minimum, and the build fails outright.
+!Cargo.lock
