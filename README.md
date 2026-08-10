@@ -1,6 +1,6 @@
 # AI Ark - WASI HTTP Example
 
-> **[Full documentation](https://outlayer.fastnear.com/docs/examples#ai-example)** on the OutLayer dashboard.
+> **[Full documentation](https://app.outlayer.ai/docs/examples#ai-example)** on the OutLayer dashboard.
 
 WASM component that makes HTTP requests to OpenAI-compatible APIs using WASI Preview 2 HTTP support.
 
